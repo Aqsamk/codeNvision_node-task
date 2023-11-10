@@ -25,7 +25,7 @@ app.get('/todos', (req, res) =>{
 
 //GET /todos/:id - Retrieve a specific todo by ID
 app.get('/todos/:id',(req,res) => {
-    const todosId = parent(req.params.id);
+    const todosId = parseInt(req.params.id);
     const todo = todos.find(todo => todo.id === todosId);
     if(!todo){
         return res.status(404).json({error:'Todo not found'})
