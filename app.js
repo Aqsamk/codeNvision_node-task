@@ -9,7 +9,8 @@ const PORT = 3000;
 
 let todos = [
     { id: 1, content: "Buy groceries", completed: false },
-    { id: 2, content: "Clean the house", completed: true }
+    { id: 2, content: "Clean the house", completed: true },
+    {id: 3,content: "Last to do thing to do",completed:true}
 
 ];
 
