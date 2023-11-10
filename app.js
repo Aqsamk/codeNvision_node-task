@@ -8,8 +8,8 @@ const PORT = 3000;
 //In Memory data storage
 
 let todos = [
-    { id: '1', content: "Buy groceries", completed: false },
-    { id: '2', content: "Clean the house", completed: true }
+    { id: 1, content: "Buy groceries", completed: false },
+    { id: 2, content: "Clean the house", completed: true }
 
 ];
 
@@ -52,17 +52,19 @@ app.post('/todos',(req,res) => {
 
 // PUT /todos/:id - Update an existing todo by ID
 
-app.put('/todos/:id',(req,res) => {
-    const todosId = parseInt(req.params.id);
+app.put('/todos/:id', (req, res) => {
+    const id = parseInt(req.params.id);
     const updatedText = req.body.text;
-    const todo = todos.find((todo)=> todo.id===todosId);
-    if (!todo){
-        return res.status(404).json({error:'todo not found'});
-    }else{
-        todos[todo].text = updatedText;
-        res.json(todos[todo]);
+  
+    const index = todos.findIndex(todo => todo.id === id);
+  
+    if (index !== -1) {
+      todos[index].text = updatedText;
+      res.json(todos[index]);
+    } else {
+      res.status(404).json({ error: 'Todo not found' });
     }
-})
+  });
 
 
 // DELETE /todos/:id - Delete a todo by ID
